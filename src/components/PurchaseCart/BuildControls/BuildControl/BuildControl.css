@@ -18,14 +18,14 @@
 
 
 .BuildControl button:disabled {
-    background-color: #00f7f3;
+    background-color: #00d3d0;
     border: 1px solid #7E7365;
     color: #ccc;
     cursor: default;
 }
 
 .BuildControl button:hover:disabled {
-    background-color: #00f7f3;
+    background-color: #00d3d0;
     color: #ccc;
     cursor: not-allowed;
 }
