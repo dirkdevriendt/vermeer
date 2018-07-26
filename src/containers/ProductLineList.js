@@ -34,19 +34,22 @@ class ProductLineList extends React.Component {
         <div className={'main-text'}>
           <h1>Product Lines</h1>  
         </div>
-      <div className='w-100 flex justify-center pa6'>
+      <div className='w-100 flex justify-center pa6'
+        style={{display:"flex"}}>
         <div className='w-100 flex flex-wrap' style={{maxWidth: 1150}}>
-          <Link
-            to='/create'
-            className='ma3 box new-post br2 flex flex-column items-center justify-center ttu fw6 f20 black-30 no-underline'
-          >
-            <img
-              src={require('../assets/plus.svg')}
-              alt=''
-              className='plus mb3'
-            />
-            <div>New Product Line</div>
-          </Link>
+          {
+            //<Link
+            //  to='/create'
+            //  className='ma3 box new-post br2 flex flex-column items-center justify-center ttu fw6 f20 black-30 no-underline'
+            //>
+            //  <img
+            //    src={require('../assets/plus.svg')}
+            //    alt=''
+            //    className='plus mb3'
+            //  />
+            //  <div>New Product Line</div>
+            //</Link>
+          }
           {this.props.allProductLinesQuery.allProductLines && this.props.allProductLinesQuery.allProductLines.map(productLine => (
             <ProductLine
               key={productLine.id}
