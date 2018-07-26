@@ -1,0 +1,31 @@
+.FlexContainer{
+    border-top:2px solid black;
+    box-shadow: 2px;
+    background-color:#00adaa;
+
+    display:flex;
+    justify-content:center;
+    width:100%;
+}
+
+.FlexWrap{
+    display:flex;
+    flex-wrap:wrap;
+    width:100%;
+}
+
+.Items{
+    overflow: hidden; /* simple clearfix */
+    display:flex;
+    flex-wrap: wrap
+}
+.Item {
+    float: left;
+     width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
+    display:flex;
+  }
+.ItemLink{
+    display:flex;
+  }

@@ -1,0 +1,94 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+type User @model {
+  id: ID! @isUnique
+  name: String
+  dateOfBirth: DateTime
+
+  # Uncomment below - you can declare relations between models like this
+
+  # posts: [Post!]! @relation(name: "UserPosts")
+}
+
+
+# Uncomment the model below as well
+
+# type Post @model {
+#   id: ID! @isUnique
+#   title: String!
+#
+#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
+#   author: User! @relation(name: "UserPosts")
+# }
+
+type File @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  contentType: String
+  name: String
+  secret: String @isUnique
+  size: Int
+  url: String
+}
+
+type ProductCategory @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String!
+  rootCategory:Int! @defaultValue(value: 0)
+  imageUrl: String
+  chapterRef: Int!
+  displayOrder:Int @defaultValue(value:100)  
+
+  productLines: [ProductLine!]! @relation(name: "ProductCategoryProductLines")
+}
+
+type ProductLine @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String!
+  subtitle: String
+  description: [String!] 
+  imageUrl: String
+  displayOrder:Int @defaultValue(value:100)  
+
+  productCategory: ProductCategory @relation(name: "ProductCategoryProductLines")
+  products: [Product!]! @relation(name: "ProductLineProducts")
+}
+
+
+type Product @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String!
+  orderNumber: String!
+  type: String
+  description: [String!]
+  imageUrl: String
+  displayOrder:Int @defaultValue(value:100)  
+  showInTable: Boolean @defaultValue(value:true)
+
+  productLine: ProductLine @relation(name: "ProductLineProducts")
+  properties: [Property!]! @relation(name: "ProductProperties")
+  
+}
+
+type Property @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String!
+  value: String!
+  type: String @defaultValue(value:"String")
+
+  product: Product @relation(name: "ProductProperties")
+}

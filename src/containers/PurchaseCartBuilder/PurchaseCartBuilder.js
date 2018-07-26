@@ -95,23 +95,26 @@ class PurchaseCartBuilder extends Component {
         }
         // {salad: true, meat: false, ...}
         return (
-            <Aux>
-                <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
-                    <OrderSummary 
-                        products={this.state.products}
-                        price={this.state.totalPrice}
-                        purchaseCancelled={this.purchaseCancelHandler}
-                        purchaseContinued={this.purchaseContinueHandler} />
-                </Modal>
-                <PurchaseCart products={this.state.products} />
-                <BuildControls
-                    productAdded={this.addProductHandler}
-                    productRemoved={this.removeProductHandler}
-                    disabled={disabledInfo}
-                    purchasable={this.state.purchasable}
-                    ordered={this.purchaseHandler}
-                    price={this.state.totalPrice} />
-            </Aux>
+            <h1>Welcome</h1>
+        //  <Aux>
+                
+        //        <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+        //            <OrderSummary 
+        //                products={this.state.products}
+        //                price={this.state.totalPrice}
+        //                purchaseCancelled={this.purchaseCancelHandler}
+        //                purchaseContinued={this.purchaseContinueHandler} />
+        //        </Modal>
+        //        <PurchaseCart products={this.state.products} />
+        //        <BuildControls
+        //           productAdded={this.addProductHandler}
+        //            productRemoved={this.removeProductHandler}
+        //            disabled={disabledInfo}
+        //            purchasable={this.state.purchasable}
+        //            ordered={this.purchaseHandler}
+        //            price={this.state.totalPrice} />
+        //            */
+        //    </Aux>
         );
     }
 }

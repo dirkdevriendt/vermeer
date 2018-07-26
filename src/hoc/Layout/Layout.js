@@ -6,8 +6,8 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
 import QuestionSearchBar  from '../../components/QuestionSearchBar/QuestionSearchBar';
-import ProductTypeSlider from '../../components/ProductTypeSlider/ProductTypeSlider';
-import ProductTypeOverview from '../../components/ProductTypeOverview/ProductTypeOverview';
+//import ProductTypeSlider from '../../components/ProductTypeSlider/ProductTypeSlider';
+import ProductCategoryOverview from '../../containers/ProductCategoryOverview/ProductCategoryOverview';
 
 import Footer from '../../components/UI/Footer/Footer';
 
@@ -36,8 +36,7 @@ class Layout extends Component {
                 <main className={classes.Content}>
                     <QuestionSearchBar />
                     {this.props.children}
-                    <ProductTypeSlider />
-                    <ProductTypeOverview />
+                    <ProductCategoryOverview />
                     <Footer/>
                 </main>
             </Aux>
