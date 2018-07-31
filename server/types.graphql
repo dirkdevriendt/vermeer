@@ -33,18 +33,32 @@ type File @model {
   url: String
 }
 
+type Image @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  alt:String
+  description: String
+  imageUrl: String
+
+  product: Product @relation(name: "ProductImages")
+  productLine: ProductLine @relation(name: "ProductLineImages")
+}
+
 type ProductCategory @model {
   id: ID! @isUnique    # read-only (managed by Graphcool)
   createdAt: DateTime! # read-only (managed by Graphcool)
   updatedAt: DateTime! # read-only (managed by Graphcool)
 
   name: String!
-  rootCategory:Int! @defaultValue(value: 0)
   imageUrl: String
   chapterRef: Int!
   displayOrder:Int @defaultValue(value:100)  
 
   productLines: [ProductLine!]! @relation(name: "ProductCategoryProductLines")
+  
+  parentProductCategory:ProductCategory @relation(name: "SubProductCategories")
+  childrenProductCategories:[ProductCategory!]! @relation(name: "SubProductCategories")
 }
 
 type ProductLine @model {
@@ -57,9 +71,15 @@ type ProductLine @model {
   description: [String!] 
   imageUrl: String
   displayOrder:Int @defaultValue(value:100)  
+  typeless: Boolean @defaultValue(value:false)
 
   productCategory: ProductCategory @relation(name: "ProductCategoryProductLines")
   products: [Product!]! @relation(name: "ProductLineProducts")
+  accessoryProducts: [Product!]! @relation(name: "ProductLineAccessoryProducts")
+  images: [Image!]! @relation(name: "ProductLineImages")
+
+  parentProductLine:ProductLine @relation(name: "SubProductLines")
+  childrenProductLines:[ProductLine!]! @relation(name: "SubProductLines")
 }
 
 
@@ -75,10 +95,11 @@ type Product @model {
   imageUrl: String
   displayOrder:Int @defaultValue(value:100)  
   showInTable: Boolean @defaultValue(value:true)
-
-  productLine: ProductLine @relation(name: "ProductLineProducts")
-  properties: [Property!]! @relation(name: "ProductProperties")
   
+  productLine: ProductLine @relation(name: "ProductLineProducts")
+  productLineAsAccessory: ProductLine @relation(name: "ProductLineAccessoryProducts")
+  properties: [Property!]! @relation(name: "ProductProperties")
+  images: [Image!]! @relation(name: "ProductImages")
 }
 
 type Property @model {
@@ -88,7 +109,9 @@ type Property @model {
 
   name: String!
   value: String!
+  unit: String
   type: String @defaultValue(value:"String")
+  relevantField: Boolean @defaultValue(value:true)
 
   product: Product @relation(name: "ProductProperties")
 }

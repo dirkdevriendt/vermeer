@@ -1,9 +1,10 @@
 import React from 'react'
 import { graphql, compose } from 'react-apollo'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 //import Product from '../components/Product'
 import gql from 'graphql-tag'
 
+import DetailedProductLine from '../components/DetailedProductLine'
 
 class ProductLineDetailPage extends React.Component {
   render() {
@@ -20,34 +21,6 @@ class ProductLineDetailPage extends React.Component {
 
     const {ProductLine} = this.props.productLineQuery
 
-    let imageDiv=(
-      <div
-        className='image'
-        style={{
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          paddingBottom: '100%',
-        }}
-      />
-    )
-    if (ProductLine.imageUrl){
-      imageDiv=(
-        <div
-          className='image'
-          style={{
-            backgroundImage: `url(${ProductLine.imageUrl})`,
-            //backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            //paddingBottom: '100%',
-            height:'400px',
-            width:'600px',
-            margin:'auto',
-            marginTop:'1em'
-          }}
-        />
-      )
-    }
-
     let productTable
     if (ProductLine.products){
       let firstProduct=ProductLine.products.slice(0,1)[0]
@@ -55,16 +28,34 @@ class ProductLineDetailPage extends React.Component {
         <table>
           <thead>
             <tr>
+              <th>Type</th>
+              <th>Order Number</th>
             {firstProduct.properties.map(prName => (
-              <th>{prName.name}</th>
+              <th key={prName.name}>{prName.name}</th>
             ))}
             </tr>
           </thead>
           <tbody>
           {ProductLine.products.map(product => (
-            <tr>
+            <tr key={product.productId}>
+              <td>
+                <Link
+                  className='bg-white ma3 box product-line flex flex-column no-underline br2'
+                  to={`/product/${product.productId}`}
+                >
+                  {product.type}
+                </Link>
+                </td>
+                <td>
+                <Link
+                  className='bg-white ma3 box product-line flex flex-column no-underline br2'
+                  to={`/product/${product.productId}`}
+                >
+                  {product.orderNumber}
+                </Link>
+                </td>
               {product.properties.map(prVal=>(
-                <td>{prVal.value}</td>
+                <td key={prVal.id}>{prVal.value}</td>
               ))}
             </tr>
           ))}    
@@ -76,37 +67,11 @@ class ProductLineDetailPage extends React.Component {
 
     return (
       <div>
-        <div className={'main-text'}>
-          <h1>{ProductLine.name}</h1>  
-          <h2>{ProductLine.subtitle}</h2>  
-        </div>
-        <div
-          className='bg-white flex flex-column no-underline br2 h-100'
-        >
-          {imageDiv}
-          <div 
-            className='items-center black-80 fw3 description' 
-            style={{
-              width:'60%',
-              margin:'auto',
-              marginTop:'1em'
-            }}
-            dangerouslySetInnerHTML={{__html: 
-        ProductLine.description.join('')}}>
-          
-          </div>
-          {productTable}
-          {
-            //ProductLine.products && ProductLine.products.map(product => (
-              //<Product
-              //  key={product.productId}
-              //  product={product}
-              //  refresh={() => this.props.productLineQuery.refetch()}
-              ///>
-            //))
-          }
-        
-        </div>
+        <DetailedProductLine 
+          productLine={ProductLine}
+          refresh={() => this.props.productLineQuery.refetch()}
+        />       
+        {productTable}
       </div>
     )
   }
@@ -138,6 +103,7 @@ const PRODUCT_LINE_QUERY = gql`
         orderNumber
         type
         properties {
+          id
           name
           value
         }

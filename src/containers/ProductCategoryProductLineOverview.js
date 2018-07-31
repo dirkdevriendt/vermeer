@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql, compose } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
-import ProductLine from './ProductLine'
+import ProductLineLink from '../components/ProductLineLink'
 import gql from 'graphql-tag'
 
-class ProductCategoryDetailPage extends React.Component {
+class ProductCategoryProductLineOverview extends React.Component {
 
   render() {
     if (this.props.productCategoryQuery.loading) {
@@ -29,7 +29,7 @@ class ProductCategoryDetailPage extends React.Component {
           <div className='w-100 flex flex-wrap' style={{maxWidth: 1150}}>
           
             {ProductCategory.productLines && ProductCategory.productLines.map(productLine => (
-              <ProductLine
+              <ProductLineLink
                 key={productLine.productLineId}
                 productLine={productLine}
                 refresh={() => this.props.productCategoryQuery.refetch()}
@@ -102,7 +102,7 @@ const ProductCategoryDetailPageWithGraphQL = compose(
   //    },
   //  }),
   // }),
-)(ProductCategoryDetailPage)
+)(ProductCategoryProductLineOverview)
 
 
 

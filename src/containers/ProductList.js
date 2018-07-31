@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Product from '../components/Product'
+import Product from '../components/SummaryProduct'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-class ProductListPage extends React.Component {
+class ProductList extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.location.key !== nextProps.location.key) {
@@ -72,6 +72,6 @@ const ProductListPageWithQuery = graphql(ALL_PRODUCTS_QUERY, {
   options: {
     fetchPolicy: 'network-only',
   },
-})(ProductListPage)
+})(ProductList)
 
 export default ProductListPageWithQuery

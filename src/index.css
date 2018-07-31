@@ -98,25 +98,6 @@ html {
 .items .item a{
   display:flex;
 }
-.main-text h1
- {
-  text-transform: uppercase;
-  font-size: 36px;
-  padding:1em 0 0 0;
-  flex: 1 1 100%
-}
-
-.main-text {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  
-  /* You need to define an explicit height! */
-  /*height:2vh  */
-}
 
 table {
   width:80%;
@@ -129,4 +110,8 @@ table td{
 
 .flex {
   display:flex;
+}
+
+.productHighlight{
+  background-color:yellowgreen
 }

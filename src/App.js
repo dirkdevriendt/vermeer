@@ -6,10 +6,11 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
 
 import ProductCategoryListPage from './containers/ProductCategoryListPage'
-import ProductCategoryDetailPage from './containers/ProductCategoryDetailPage'
+import ProductCategoryProductList from './containers/ProductCategoryProductList'
 import ProductLineList from './containers/ProductLineList'
 import ProductLineDetailPage from './components/ProductLineDetailPage'
-//import ProductListPage from './components/ProductListPage'
+import ProductList from './containers/ProductList'
+import ProductDetail from './containers/ProductDetail'
 import Home from './containers/Home/Home';
 
 //import Auth from './containers/Auth/Auth';
@@ -30,9 +31,11 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/productCategories' component={ProductCategoryListPage} />
-          <Route path='/productCategory/:id' component={ProductCategoryDetailPage} />
+          <Route path='/productCategory/:id' component={ProductCategoryProductList} />
           <Route path='/productLines' component={ProductLineList} />
           <Route path='/productLine/:id' component={ProductLineDetailPage} />  
+          <Route path='/products' component={ProductList} />
+          <Route path='/product/:id' component={ProductDetail} />  
         </Switch>
       );
     //}

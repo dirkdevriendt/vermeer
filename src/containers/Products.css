@@ -1,0 +1,56 @@
+.MainText {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  
+  /* You need to define an explicit height! */
+  /*height:2vh  */
+}
+
+.MainText h1
+{
+ text-transform: uppercase;
+ font-size: 36px;
+ padding:1em 0 0 0;
+ flex: 1 1 100%
+}
+
+
+.Item {
+  float: left;
+  width: 25%;
+  box-sizing: border-box;
+  padding: 10px;
+  display:flex;
+}
+.ItemLink{
+  display:flex;
+}
+.ProductHighlight{
+  background-color:yellowgreen
+}
+
+.ProductImage{ 
+  /*backgroundSize: cover*/
+  background-position: center;
+  /*paddingBottom: 100%*/
+  height:400px;
+  width:600px;
+  margin:auto;
+  margin-top:1em;
+}
+
+.SummaryProductLink{
+  font-size:1em;
+}
+
+.ProductInfo{
+  font-size:1em;
+}
+
+.ProductDescription{
+  font-size:1em;
+}

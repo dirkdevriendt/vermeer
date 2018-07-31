@@ -19,13 +19,3 @@
     display:flex;
     flex-wrap: wrap
 }
-.Item {
-    float: left;
-     width: 25%;
-    box-sizing: border-box;
-    padding: 10px;
-    display:flex;
-  }
-.ItemLink{
-    display:flex;
-  }

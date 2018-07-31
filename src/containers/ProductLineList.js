@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ProductLine from './ProductLine'
+import ProductLine from '../components/ProductLineLink'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
