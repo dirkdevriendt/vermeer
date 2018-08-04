@@ -37,12 +37,24 @@ type Image @model {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
+  title:String
   alt:String
   description: String
   imageUrl: String
+  htmlDescription: Boolean @defaultValue(value:false)
 
   product: Product @relation(name: "ProductImages")
   productLine: ProductLine @relation(name: "ProductLineImages")
+}
+type Document @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  description: String
+  fileUrl: String
+
+  product: Product @relation(name: "ProductDocuments")
+  productLine: ProductLine @relation(name: "ProductLineDocuments")
 }
 
 type ProductCategory @model {
@@ -56,7 +68,9 @@ type ProductCategory @model {
   displayOrder:Int @defaultValue(value:100)  
 
   productLines: [ProductLine!]! @relation(name: "ProductCategoryProductLines")
-  
+  accessoryProducts: [Product!]! @relation(name: "ProductCategoryAccessoryProducts")
+  accessoryProductLines: [ProductLine!]! @relation(name: "ProductCategoryAccessoryProductLines")
+
   parentProductCategory:ProductCategory @relation(name: "SubProductCategories")
   childrenProductCategories:[ProductCategory!]! @relation(name: "SubProductCategories")
 }
@@ -72,12 +86,21 @@ type ProductLine @model {
   imageUrl: String
   displayOrder:Int @defaultValue(value:100)  
   typeless: Boolean @defaultValue(value:false)
+  pivotTable: Boolean @defaultValue(value:false)
+
+  deviceOptions: [DeviceOption!]! @relation(name: "ProductLineDeviceOptions")
+  images: [Image!]! @relation(name: "ProductLineImages")
+  documents: [Document!]! @relation(name: "ProductLineDocuments")
 
   productCategory: ProductCategory @relation(name: "ProductCategoryProductLines")
+  productCategoryAsAccessory: ProductCategory @relation(name: "ProductCategoryAccessoryProductLines")
+
+  productLineAsAccessory: ProductLine @relation(name: "ProductLineAccessoryProductLines")
+  accessoryProductLines: [ProductLine!]! @relation(name: "ProductLineAccessoryProductLines")
+
   products: [Product!]! @relation(name: "ProductLineProducts")
   accessoryProducts: [Product!]! @relation(name: "ProductLineAccessoryProducts")
-  images: [Image!]! @relation(name: "ProductLineImages")
-
+  
   parentProductLine:ProductLine @relation(name: "SubProductLines")
   childrenProductLines:[ProductLine!]! @relation(name: "SubProductLines")
 }
@@ -96,10 +119,18 @@ type Product @model {
   displayOrder:Int @defaultValue(value:100)  
   showInTable: Boolean @defaultValue(value:true)
   
-  productLine: ProductLine @relation(name: "ProductLineProducts")
-  productLineAsAccessory: ProductLine @relation(name: "ProductLineAccessoryProducts")
   properties: [Property!]! @relation(name: "ProductProperties")
+  deviceOptions: [DeviceOption!]! @relation(name: "ProductDeviceOptions")
   images: [Image!]! @relation(name: "ProductImages")
+  documents: [Document!]! @relation(name: "ProductDocuments")
+
+  productLine: ProductLine @relation(name: "ProductLineProducts")
+  
+  productLineAsAccessory: ProductLine @relation(name: "ProductLineAccessoryProducts")
+  productCategoryAsAccessory: ProductCategory @relation(name: "ProductCategoryAccessoryProducts")
+  
+  productAsAccessory:Product @relation(name: "ProductAccessoryProducts")
+  productAccessories:[Product!]! @relation(name: "ProductAccessoryProducts")
 }
 
 type Property @model {
@@ -114,4 +145,18 @@ type Property @model {
   relevantField: Boolean @defaultValue(value:true)
 
   product: Product @relation(name: "ProductProperties")
+}
+
+type DeviceOption @model {
+  id: ID! @isUnique    # read-only (managed by Graphcool)
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String!
+  default: String!
+  value: String
+  unit: String
+  
+  product: Product @relation(name: "ProductDeviceOptions")
+  productLine: ProductLine @relation(name: "ProductLineDeviceOptions")
 }

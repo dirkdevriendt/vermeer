@@ -1,0 +1,30 @@
+.ImageContainer {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    background-color:#00adaa;
+    margin:5px 0;
+    height:400px;
+    width:100%;
+    border-radius:3px;
+    border:solid 1px black;
+}
+
+.ImageBox{
+    margin:10px;
+    height:95%;
+    width:95%;
+    display:flex;
+    text-align:center;
+    justify-content: space;
+    flex-direction: row;
+}
+
+.ImageBox button{
+    font:inherit;
+    padding:5px;
+    margin:0 5px;
+    border:1px solid #AA6871;
+    cursor:pointer;
+    outline:none;
+}

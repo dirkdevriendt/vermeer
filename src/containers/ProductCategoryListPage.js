@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCategory from '../containers/ProductCategory'
+import ProductCategory from '../components/ProductCategory'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 

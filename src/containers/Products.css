@@ -18,17 +18,16 @@
  flex: 1 1 100%
 }
 
-
 .Item {
   float: left;
   width: 25%;
   box-sizing: border-box;
   padding: 10px;
   display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.ItemLink{
-  display:flex;
-}
+
 .ProductHighlight{
   background-color:yellowgreen
 }
