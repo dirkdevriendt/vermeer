@@ -7,9 +7,13 @@ export default class ProductPropertyUl extends React.Component {
     return (
       <div className={classes.productProperties}>
         <ul>
-        {this.props.properties.map(productProperty=>(
-          <li key={productProperty.propertyId}>{productProperty.propertyName}: {productProperty.propertyValue} {productProperty.propertyUnit?productProperty.propertyUnit:""}</li>
-        ))}
+        {this.props.properties.map(productProperty=>{
+            if (productProperty.propertyRelevantField)
+              return <li key={productProperty.propertyId}>{productProperty.propertyName}: {productProperty.propertyValue} {productProperty.propertyUnit?productProperty.propertyUnit:""}</li>
+            else 
+              return ""
+          } 
+        )}
         </ul>
       </div>
     )

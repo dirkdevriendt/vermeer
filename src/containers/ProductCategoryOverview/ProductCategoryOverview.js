@@ -31,13 +31,12 @@ class ProductCategoryOverview extends React.Component {
         //  blurClass = ' blur'
         //}
     
-
         return(
             <div className={classes.ProductCategoryOverview}>
               <div className={classes.HeaderDiv}>
                 <h1>Our Product Categories</h1>
               </div>
-              <div className={'w-100 flex flex-wrap '} style={{maxWidth: 1150,justifyContent:"center"}}>
+              <div className={'w-100 flex flex-wrap justify-center'}>
                 {this.props.allProductCategoriesQuery.allProductCategories && this.props.allProductCategoriesQuery.allProductCategories.map(productCategory => (
                     <ProductCategory
                       key={productCategory.id}

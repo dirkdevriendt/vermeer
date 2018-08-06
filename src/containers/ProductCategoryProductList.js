@@ -27,8 +27,8 @@ class ProductCategoryProductList extends React.Component {
         <div className={classes.MainText}>
           <h1>{ProductCategory.productCategoryName}</h1>  
         </div>
-        <div className={'w-100 justify-center pa6'}>
-          <div className='w-100' style={{maxWidth: 1150}}>
+        <div className={'w-100 flex justify-center pa6'}>
+          <div className='w-100 bg-dark-green'>
             {ProductCategory.productLines && ProductCategory.productLines.map(productLine => (
               <ProductLineProductLinkList 
                 key={productLine.productLineId}

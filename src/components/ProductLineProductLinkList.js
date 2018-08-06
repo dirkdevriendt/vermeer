@@ -26,14 +26,17 @@ export default class ProductLineProductLink extends React.Component {
     }
         
     return (
-      <div className={classes.ProductLineProductLinkList}>
+      <div className={'bg-green '+ classes.ProductLineProductLinkList}>
         <h2>{productLineName}</h2>
-        {this.props.productLine.products && this.props.productLine.products.map(product => (    
-          <SummaryProductLink
-            key={product.productId}
-            product={product}
-          />
-        ))}
+        <div className={'flex flex-column'}>
+          {this.props.productLine.products && this.props.productLine.products.map(product => (    
+            <SummaryProductLink
+              key={product.productId}
+              product={product}
+              productLineImageUrl={productLineImageUrl}
+            />
+          ))}
+        </div>
       </div>
     )
   }

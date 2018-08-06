@@ -20,14 +20,27 @@ export default class SummaryProductLink extends React.Component {
 
     let productImageUrl=this.props.product.imageUrl
     if (this.props.product.productImageUrl) productImageUrl=this.props.product.productImageUrl
-
-    let productImageDiv
+    else if (this.props.productLineImageUrl) productImageUrl=this.props.productLineImageUrl
+    let productImageDiv=(
+      <div
+        className={'w-50 bg-washed-green '+classes.ProductImage}
+        style={{
+          height:'30vh',
+          marginTop:0,
+          marginBottom:'5px'
+        }}
+      />
+    )
+  
     if (productImageUrl){
       productImageDiv=(
         <div
-          className={classes.ProductImage}
+          className={'w-50 '+classes.ProductImage}
           style={{
-            backgroundImage: `url(${productImageUrl})`
+            backgroundImage: `url(${productImageUrl})`,
+            height:'30vh',
+            marginTop:0,
+            marginBottom:'5px'
           }}
         />
       )
@@ -35,12 +48,14 @@ export default class SummaryProductLink extends React.Component {
         
 
     return (
-      <div className={classes.SummaryProductLink}>
+      <div className={'flex justify-center '+ classes.SummaryProductLink}>
         {productImageDiv}
+        <div className='w-50 bg-washed-green ' style={{height:'30vh'}}>
         <h3>{productName} {productType}</h3>
         <ProductPropertyUl
           properties={this.props.product.properties}
         />
+        </div>
       </div>
     )
   }
