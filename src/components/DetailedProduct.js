@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import ProductPropertyUl from '../components/ProductPropertyUl'
-import classes from '../containers/Products.css';
+import classes from '../css/Products.css';
 
 export default class DetailedProduct extends React.Component {
 

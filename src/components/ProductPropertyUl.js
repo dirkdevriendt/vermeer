@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from '../containers/Products.css';
+import classes from '../css/Products.css';
 
 export default class ProductPropertyUl extends React.Component {
 

@@ -6,7 +6,7 @@ import gql from 'graphql-tag'
 import DetailedProduct from '../components/DetailedProduct'
 import DetailedProductLine from '../components/DetailedProductLine'
 
-import classes from './Products.css';
+import classes from '../css/Products.css';
 
 
 class ProductDetail extends React.Component {

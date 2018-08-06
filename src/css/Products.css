@@ -32,16 +32,6 @@
   background-color:yellowgreen
 }
 
-.ProductImage{ 
-  /*backgroundSize: cover*/
-  background-position: center;
-  /*paddingBottom: 100%*/
-  height:400px;
-  width:600px;
-  margin:auto;
-  margin-top:1em;
-}
-
 .SummaryProductLink{
   font-size:1em;
 }

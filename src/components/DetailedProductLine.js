@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import classes from '../containers/Products.css';
+import classes from '../css/Products.css';
 
 export default class ProductLine extends React.Component {
 

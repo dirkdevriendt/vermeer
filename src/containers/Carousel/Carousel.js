@@ -11,8 +11,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 //import ProductCategoryCarousel from '../../components/ProductCategoryCarousel/ProductCategoryCarousel'
-import imageClasses from '../../components/Images.css'
-import classes from './Carousel.css'
+import imageClasses from '../../css/Images.css'
 
 class Carousel  extends React.Component {
   render (){
@@ -52,7 +51,7 @@ class Carousel  extends React.Component {
             <Slide right key={productCategory.id}>
               
               <div className={imageClasses.ImageBox}>
-                <div className={classes.CarouselImageBox}>
+                <div className={imageClasses.CarouselImageBox}>
                   <img src={productCategory.imageUrl} alt={productCategory.name}/>
                 </div>
               </div>

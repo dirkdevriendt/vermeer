@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import ProductLineProductLinkList from '../components/ProductLineProductLinkList'
 import gql from 'graphql-tag'
 
-import classes from './Products.css';
+import classes from '../css/Products.css';
 
 class ProductCategoryProductList extends React.Component {
 

@@ -1,0 +1,82 @@
+.ImageContainer {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    background-color:#00adaa;
+    margin:5px 0;
+    /*height:400px;*/
+    /*width:100%;*/
+    border-radius:3px;
+    border:solid 1px black;
+}
+
+.ImageBox{
+    margin:10px;
+    height:95%;
+    width:95%;
+    display:flex;
+    text-align:center;
+    justify-content: space;
+    flex-direction: row;
+}
+
+
+.SummaryImageBox{
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height:100%;
+  }
+
+.SummaryImageBox img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 80%;
+}
+
+.ImageBox button{
+    font:inherit;
+    padding:5px;
+    margin:0 5px;
+    border:1px solid #AA6871;
+    cursor:pointer;
+    outline:none;
+}
+
+.ProductImage{ 
+    /*backgroundSize: cover*/
+    background-position: center;
+    /*paddingBottom: 100%*/
+    height:400px;
+    width:600px;
+    margin:auto;
+    margin-top:1em;
+  }
+
+  
+.CarouselImageBox{
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height:100%;
+  }
+  
+.CarouselImageBox img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 80%;
+  }
