@@ -52,7 +52,7 @@ export default class DetailedProduct extends React.Component {
     if (productDescription){
       productDescriptionDiv=(
         <div
-          className={'flex items-center black-80 fw3 name'  + classes.ProductDescription}
+          className={'flex items-center black-80 fw3 name '  + classes.ProductDescription}
           dangerouslySetInnerHTML={{__html: 
             productDescription.join('')}}>
         </div>

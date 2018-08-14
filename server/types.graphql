@@ -68,11 +68,17 @@ type ProductCategory @model {
   displayOrder:Int @defaultValue(value:100)  
 
   productLines: [ProductLine!]! @relation(name: "ProductCategoryProductLines")
+  
+  parentProductCategory:ProductCategory @relation(name: "SubProductCategories")
+  childrenProductCategories:[ProductCategory!]! @relation(name: "SubProductCategories")
+
+  productsLinked:[Product!]! @relation(name: "ProductCategoryLinkedProducts")
+  productLinesLinked:[ProductLine!]! @relation(name: "ProductCategoryLinkedProductLines")
+
   accessoryProducts: [Product!]! @relation(name: "ProductCategoryAccessoryProducts")
   accessoryProductLines: [ProductLine!]! @relation(name: "ProductCategoryAccessoryProductLines")
 
-  parentProductCategory:ProductCategory @relation(name: "SubProductCategories")
-  childrenProductCategories:[ProductCategory!]! @relation(name: "SubProductCategories")
+  
 }
 
 type ProductLine @model {
@@ -87,22 +93,33 @@ type ProductLine @model {
   displayOrder:Int @defaultValue(value:100)  
   typeless: Boolean @defaultValue(value:false)
   pivotTable: Boolean @defaultValue(value:false)
+  showAsProduct: Boolean @defaultValue(value:false)
 
   deviceOptions: [DeviceOption!]! @relation(name: "ProductLineDeviceOptions")
   images: [Image!]! @relation(name: "ProductLineImages")
   documents: [Document!]! @relation(name: "ProductLineDocuments")
 
   productCategory: ProductCategory @relation(name: "ProductCategoryProductLines")
+  products: [Product!]! @relation(name: "ProductLineProducts")
+  
+  parentProductLine:ProductLine @relation(name: "SubProductLines")
+  childrenProductLines:[ProductLine!]! @relation(name: "SubProductLines")
+
+  linkedToProductCategories: [ProductCategory!]! @relation(name: "ProductCategoryLinkedProductLines")
+
+  linkedToProductLines: [ProductLine!]! @relation(name: "ProductLineLinkedProductLines")
+  productLinesLinked:[ProductLine!]! @relation(name: "ProductLineLinkedProductLines")
+  
+  linkedToProducts: [Product!]! @relation(name: "ProductLinkedProductLines")
+
+  productsLinked:[Product!]! @relation(name: "ProductLineLinkedProducts")
+  
   productCategoryAsAccessory: ProductCategory @relation(name: "ProductCategoryAccessoryProductLines")
 
   productLineAsAccessory: ProductLine @relation(name: "ProductLineAccessoryProductLines")
   accessoryProductLines: [ProductLine!]! @relation(name: "ProductLineAccessoryProductLines")
 
-  products: [Product!]! @relation(name: "ProductLineProducts")
   accessoryProducts: [Product!]! @relation(name: "ProductLineAccessoryProducts")
-  
-  parentProductLine:ProductLine @relation(name: "SubProductLines")
-  childrenProductLines:[ProductLine!]! @relation(name: "SubProductLines")
 }
 
 
@@ -126,11 +143,22 @@ type Product @model {
 
   productLine: ProductLine @relation(name: "ProductLineProducts")
   
+  linkedToProductCategories:[ProductCategory!]! @relation(name: "ProductCategoryLinkedProducts")
+
+  linkedToProductLines:[ProductLine!]! @relation(name: "ProductLineLinkedProducts")
+
+  productLinesLinked: [ProductLine!]! @relation(name: "ProductLinkedProductLines")
+
+  linkedToProducts:[Product!]! @relation(name: "ProductLinkedProducts")
+  productsLinked:[Product!]! @relation(name: "ProductLinkedProducts")
+
+
   productLineAsAccessory: ProductLine @relation(name: "ProductLineAccessoryProducts")
   productCategoryAsAccessory: ProductCategory @relation(name: "ProductCategoryAccessoryProducts")
   
   productAsAccessory:Product @relation(name: "ProductAccessoryProducts")
   productAccessories:[Product!]! @relation(name: "ProductAccessoryProducts")
+
 }
 
 type Property @model {
@@ -140,6 +168,8 @@ type Property @model {
 
   name: String!
   value: String!
+  minValue: String
+  maxValue: String
   unit: String
   type: String @defaultValue(value:"String")
   relevantField: Boolean @defaultValue(value:true)
@@ -156,6 +186,7 @@ type DeviceOption @model {
   default: String!
   value: String
   unit: String
+  values:[String!]
   
   product: Product @relation(name: "ProductDeviceOptions")
   productLine: ProductLine @relation(name: "ProductLineDeviceOptions")

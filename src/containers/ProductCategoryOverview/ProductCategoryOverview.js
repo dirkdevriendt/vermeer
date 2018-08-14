@@ -3,6 +3,7 @@ import React from 'react';
 import classes from './ProductCategoryOverview.css';
 
 import ProductCategory from '../../components/ProductCategory'
+import ProductCategoryCard from '../../components/Cards/ProductCategoryCard'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -36,9 +37,22 @@ class ProductCategoryOverview extends React.Component {
               <div className={classes.HeaderDiv}>
                 <h1>Our Product Categories</h1>
               </div>
+              {
+                /*
+                  <div className={'w-100 flex flex-wrap justify-center'}>
+                    {this.props.allProductCategoriesQuery.allProductCategories && this.props.allProductCategoriesQuery.allProductCategories.map(productCategory => (
+                        <ProductCategory
+                          key={productCategory.id}
+                          productCategory={productCategory}
+                          refresh={() => this.props.allProductCategoriesQuery.refetch()}
+                        />))
+                    }
+                  </div>
+                */
+              }
               <div className={'w-100 flex flex-wrap justify-center'}>
                 {this.props.allProductCategoriesQuery.allProductCategories && this.props.allProductCategoriesQuery.allProductCategories.map(productCategory => (
-                    <ProductCategory
+                    <ProductCategoryCard
                       key={productCategory.id}
                       productCategory={productCategory}
                       refresh={() => this.props.allProductCategoriesQuery.refetch()}
