@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import SummaryProductLink from './SummaryProductLink'
-import classes from '../css/Products.css';
+import ProductLineAsSummaryProductLink from './ProductLineAsSummaryProductLink'
+import classes from '../css/Products.css'
 
 export default class ProductLineProductLink extends React.Component {
 
@@ -24,7 +25,35 @@ export default class ProductLineProductLink extends React.Component {
         />
       )
     }
-        
+
+    let childrenProductLinesAsProducts = null
+    if(this.props.productLine.childrenProductLines){
+      childrenProductLinesAsProducts = this.props.productLine.childrenProductLines
+      .filter(childProductLine=>childProductLine.showAsProduct)  
+      .map((childProductLine) => {
+        return (
+          <ProductLineAsSummaryProductLink
+            key={childProductLine.productLineId}
+            productLine={childProductLine}
+          />
+        )
+      })
+    }
+
+    let childrenProductLines = null
+    if(this.props.productLine.childrenProductLines){
+      childrenProductLines = this.props.productLine.childrenProductLines
+      .filter(childProductLine=>!childProductLine.showAsProduct)  
+      .map((childProductLine) => {
+        return (
+          <ProductLineProductLink
+            key={childProductLine.productLineId}
+            productLine={childProductLine}
+          />
+        )
+      })
+    }
+  
     return (
       <div className={'bg-green '+ classes.ProductLineProductLinkList}>
         <h2>{productLineName}</h2>
@@ -36,6 +65,8 @@ export default class ProductLineProductLink extends React.Component {
               productLineImageUrl={productLineImageUrl}
             />
           ))}
+          {childrenProductLinesAsProducts}
+          {childrenProductLines}
         </div>
       </div>
     )

@@ -32,10 +32,10 @@ const styles = theme =>  ({
   },
 });
 
-function ProductCategoryCard(props) {
+function ProductDetailCard(props) {
   const { classes } = props;
   return (
-    <div className={'container ma3 productCategory'}>
+    <div className={'container ma3 productDetail'}>
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
@@ -67,8 +67,8 @@ function ProductCategoryCard(props) {
   );
 }
 
-ProductCategoryCard.propTypes = {
+ProductDetailCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ProductCategoryCard);
+export default withStyles(styles)(ProductDetailCard);

@@ -11,17 +11,6 @@ type User @model {
   # posts: [Post!]! @relation(name: "UserPosts")
 }
 
-
-# Uncomment the model below as well
-
-# type Post @model {
-#   id: ID! @isUnique
-#   title: String!
-#
-#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
-#   author: User! @relation(name: "UserPosts")
-# }
-
 type File @model {
   id: ID! @isUnique
   createdAt: DateTime!

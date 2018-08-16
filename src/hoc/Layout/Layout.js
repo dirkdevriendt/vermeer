@@ -33,12 +33,15 @@ class Layout extends Component {
                 <SideDrawer
                     open={this.state.showSideDrawer}
                     closed={this.sideDrawerClosedHandler} />
-                <main className={classes.Content}>
                     <QuestionSearchBar />
+                    
+                <main className={classes.Content}>
+                    
                     {this.props.children}
                     <ProductCategoryOverview />
-                    <Footer/>
+                    
                 </main>
+                <Footer/>
             </Aux>
         )
     }
